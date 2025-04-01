@@ -48,10 +48,8 @@ def extract_commits_per_minute():
     url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits'
     headers = {'User-Agent': 'FlaskApp'}
 
-     response = requests.get(url, headers=headers)
-    print("Status Code:", response.status_code)  
-    data = response.json()
-    print("Data:", data)
+     response = requests.get(url, headers=headers) 
+     data = response.json()
 
     minutes = []
     for commit in data:
