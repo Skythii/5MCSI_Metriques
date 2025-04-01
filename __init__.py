@@ -44,7 +44,7 @@ def show_commits_chart():
 
 @app.route('/api/commits-per-minute/')
 def commits_per_minute():
-    url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits'
+    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits'
     response = requests.get(url)
     data = response.json()
 
