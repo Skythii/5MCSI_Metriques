@@ -123,12 +123,17 @@
     </div>
   </div>
 
+  <!-- 😺 Miam Cat flottant -->
+  <img src="https://media.tenor.com/ULt7d6Gqz6IAAAAi/miam-miam-chat.gif" 
+       alt="miam cat" 
+       style="position: fixed; bottom: 20px; right: 20px; width: 120px; z-index: 999;">
+
   <script>
     const form = document.getElementById('contactForm');
     const confirmation = document.getElementById('confirmationMessage');
 
     form.addEventListener('submit', function(e) {
-      e.preventDefault(); // On bloque l'envoi réel
+      e.preventDefault(); // Bloque l'envoi réel
       confirmation.style.display = 'block';
       form.reset(); // Nettoyer les champs
     });
