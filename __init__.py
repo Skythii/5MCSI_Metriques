@@ -40,28 +40,30 @@ def histogramme():
     return render_template("histogramme.html")
 
 @app.route('/commits/')
-def show_commits_chart():
-    return render_template("commits.html")
+def commits_page():
+    return render_template('commits.html')
 
 @app.route('/api/commits-per-minute/')
-def commits_per_minute():
-    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits?per_page=100'
-    response = requests.get(url)
+def extract_commits_per_minute():
+    url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits?per_page=100'
+    headers = {'User-Agent': 'FlaskApp'}
+
+    response = requests.get(url, headers=headers)
     data = response.json()
 
     minutes = []
     for commit in data:
         try:
-            date_str = commit['commit']['author']['date']
-            dt = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
-            minutes.append(dt.minute)
-        except Exception as e:
+            date_str = commit['commit']['author']['date']  # [commit][author][date]
+            date_object = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
+            minutes.append(date_object.minute)
+        except Exception:
             continue
 
-    count_by_minute = Counter(minutes)
-    chart_data = [['Minute', 'Commits']]
-    for minute in sorted(count_by_minute):
-        chart_data.append([str(minute), count_by_minute[minute]])
+    compteur = Counter(minutes)
+    chart_data = [["Minute", "Commits"]]
+    for minute in range(60):  # Toujours de 0 à 59
+        chart_data.append([str(minute), compteur.get(minute, 0)])
 
     return jsonify(chart_data)
 
