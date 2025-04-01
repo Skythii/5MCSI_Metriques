@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Projet - Accueil</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #f0f2f5, #cce3f5);
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h1 {
+      color: #005b96;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 10px 15px;
+      padding: 12px 20px;
+      background-color: #005b96;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+      background-color: #003f6b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenue sur mon projet Flask</h1>
+    <p>Découvrez les différentes pages développées dans le cadre du projet :</p>
+    <div class="links">
+      <a href="/contact/">📬 Page de Contact</a>
+      <a href="/histogramme/">🌡️ Températures (Histogramme)</a>
+      <a href="/commits/">📊 Page d’accueil du projet</a>
+    </div>
+  </div>
+</body>
+</html>
