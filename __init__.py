@@ -44,7 +44,7 @@ def show_commits_chart():
 
 @app.route('/api/commits-per-minute/')
 def commits_per_minute():
-    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits'
+    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits?per_page=100'
     response = requests.get(url)
     data = response.json()
 
@@ -58,7 +58,6 @@ def commits_per_minute():
             continue
 
     count_by_minute = Counter(minutes)
-    # On transforme les résultats pour Google Charts
     chart_data = [['Minute', 'Commits']]
     for minute in sorted(count_by_minute):
         chart_data.append([str(minute), count_by_minute[minute]])
