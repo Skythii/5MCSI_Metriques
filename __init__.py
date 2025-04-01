@@ -45,7 +45,7 @@ def commits_page():
 
 @app.route('/api/commits-per-minute/')
 def extract_commits_per_minute():
-    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/templates/commits'
+    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits'
     headers = {'User-Agent': 'FlaskApp'}
 
      response = requests.get(url, headers=headers)
