@@ -43,18 +43,20 @@ def histogramme():
 def commits_page():
     return render_template('commits.html')
 
+import requests  # <-- Tu avais oublié cette importation
+
 @app.route('/api/commits-per-minute/')
 def extract_commits_per_minute():
-    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits'
+    url = 'https://api.github.com/repos/Skythii/5MCSI_Metriques/commits?per_page=100'
     headers = {'User-Agent': 'FlaskApp'}
 
-     response = requests.get(url, headers=headers) 
-     data = response.json()
+    response = requests.get(url, headers=headers)
+    data = response.json()
 
     minutes = []
     for commit in data:
         try:
-            date_str = commit['commit']['author']['date']  # [commit][author][date]
+            date_str = commit['commit']['author']['date']
             date_object = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
             minutes.append(date_object.minute)
         except Exception:
@@ -62,7 +64,7 @@ def extract_commits_per_minute():
 
     compteur = Counter(minutes)
     chart_data = [["Minute", "Commits"]]
-    for minute in range(60):  # Toujours de 0 à 59
+    for minute in range(60):
         chart_data.append([str(minute), compteur.get(minute, 0)])
 
     return jsonify(chart_data)
